@@ -43,17 +43,17 @@
             <i class="fa-solid fa-circle-info"></i>
         </span></h2>
         
-        <form class="contact__form" action="#" method="POST">
+        <form class="contact__form" id="contact-form" action="#" method="POST">
             <div class="mb-3">
-                <label for="name" class="form-label">Nombre</label>
+                <label for="name" class="form-label">Nombre<span class="text-danger ps-1">*</span></label>
                 <input type="text" class="form-control" id="name" name="name" required>
             </div>
             <div class="mb-3">
-                <label for="email" class="form-label">Correo electrónico</label>
+                <label for="email" class="form-label">Correo electrónico<span class="text-danger ps-1">*</span></label>
                 <input type="email" class="form-control" id="email" name="email" required>
             </div>
             <div class="mb-3">
-                <label for="phone" class="form-label">Tipo de reparación</label>
+                <label for="phone" class="form-label pe-5">Tipo de reparación<span class="text-danger ps-1">*</span></label>
                 <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                     <input type="checkbox" class="btn-check" id="cambio-aceite" autocomplete="off">
                     <label class="btn btn-outline-light" for="cambio-aceite">Cambio de aceite</label>
@@ -66,20 +66,21 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label for="date" class="form-label">Fecha de la cita</label>
+                <label for="date" class="form-label">Fecha de la cita<span class="text-danger ps-1">*</span></label>
                 <input type="datetime-local" class="form-control" id="date" name="date" required>
             </div>    
             <div class="mb-3">
                 <label for="message" class="form-label">Mensaje</label>
-                <textarea class="form-control" id="message" name="message" rows="4" placeholder="Si puedes danos detalles del estado de tu vehículo" required></textarea>
+                <textarea class="form-control" id="message" name="message" rows="4" placeholder="Si puedes danos detalles del estado de tu vehículo"></textarea>
             </div>
-            <!-- Botón para abrir el modal para el pago  -->
-            <!-- Falta validación de datos completos en el primer formulario antes de abrir el modal -->
-            <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paySection">Confirmar Reserva</button>
+            <button type="submit" class="btn btn-primary">Confirmar Reserva</button>
         </form>
+        <div class="alert alert-danger mt-3 d-none" id="alertMessage" role="alert">
+            Completa todos los campos requeridos para confirmar tu reserva.
+        </div>
     </section>  
     <!-- Modal para pago de reserva -->
-    <div class="modal fade" id="paySection" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="paySectionLabel" aria-hidden="true">
+    <div class="modal fade" id="paySection" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="paySectionLabel">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -89,6 +90,9 @@
                 <div class="modal-body">
                     <form id="payForm">
                         <legend>Información de pago</legend>
+                        <div class="alert alert-warning" role="alert">
+                            Recuerda que debes abonar el 50% del servicio seleccionado para confirmar tu reserva.
+                        </div>
                         <div class="mb-3">
                             <label for="cardNumber" class="form-label">Número de tarjeta</label>
                             <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" required>
@@ -108,10 +112,6 @@
                     <!-- Mostrar el monto total a pagar en el modal?? -->
                         <button type="submit" class="btn btn-success">Pagar</button>
                     </form> 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
                 </div>
             </div>
         </div>

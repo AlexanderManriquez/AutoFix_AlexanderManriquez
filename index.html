@@ -4,9 +4,130 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AutoFix - Reparación de vehículos a domicilio</title>
-    <link rel="styleshet" href="./assets/css/styles.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <script src="https://kit.fontawesome.com/6262dc69d7.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <!-- Header: Titulo / Imagen -->
+    <header class="header container-fluid">
+        <h1 class="header__title">AutoFix - Reparación de vehículos a domicilio</h1>
+        <img class="header__image" src="./assets/img/motor.jpg" alt="Imagen de un motor de automóvil">
+    </header>
+    <!-- Sección de servicios y precios -->
+     <!-- Funcionalidad javaScript: expandir la tarjeta para mostrar una descrición al hacer click -->
+     <section class="services container p-5">
+        <h2 class="services__title">Servicios y Precios</h2>
+        <div class="cards">
+            <article class="card">
+                <img class="card__img" src="./assets/img/cambio-aceite.png" alt="Cambio de aceite">
+                <h3 class="card__title">Cambio de aceite</h3>
+                <p class="card_price">$25000 CLP</p>
+            </article>
+            <article class="card">
+                <img class="card__img" src="./assets/img/revision-frenos.png" alt="Revisión completa de frenos">
+                <h3 class="card__title">Revisión de frenos</h3>
+                <p class="card_price">$35000 CLP</p>
+            </article>
+            <article class="card">
+                <img class="card__img" src="./assets/img/revision-electrica.png" alt="Revisión del sistema eléctrico">
+                <h3 class="card__title">Revisión eléctrica</h3>
+                <p class="card_price">$30000 CLP</p>
+            </article>
+        </div>
     
+     </section>
+    <!-- Formulario para contacto -->
+    <section class="contact container p-5">
+        <h2 class="contact__title">Contáctanos<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Para poder realizar tu reserva debes abonar el 50% del servicio seleccionado.">
+            <i class="fa-solid fa-circle-info"></i>
+        </span></h2>
+        
+        <form class="contact__form" action="#" method="POST">
+            <div class="mb-3">
+                <label for="name" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Tipo de reparación</label>
+                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                    <input type="checkbox" class="btn-check" id="cambio-aceite" autocomplete="off">
+                    <label class="btn btn-outline-light" for="cambio-aceite">Cambio de aceite</label>
+
+                    <input type="checkbox" class="btn-check" id="revision-frenos" autocomplete="off">
+                    <label class="btn btn-outline-light" for="revision-frenos">Revisión de Frenos</label>
+
+                    <input type="checkbox" class="btn-check" id="revision-electrica" autocomplete="off">
+                    <label class="btn btn-outline-light" for="revision-electrica">Revisión eléctrica</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="date" class="form-label">Fecha de la cita</label>
+                <input type="datetime-local" class="form-control" id="date" name="date" required>
+            </div>    
+            <div class="mb-3">
+                <label for="message" class="form-label">Mensaje</label>
+                <textarea class="form-control" id="message" name="message" rows="4" placeholder="Si puedes danos detalles del estado de tu vehículo" required></textarea>
+            </div>
+            <!-- Botón para abrir el modal para el pago  -->
+            <!-- Falta validación de datos completos en el primer formulario antes de abrir el modal -->
+            <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paySection">Confirmar Reserva</button>
+        </form>
+    </section>  
+    <!-- Modal para pago de reserva -->
+    <div class="modal fade" id="paySection" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="paySectionLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Confirma tu reserva</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="payForm">
+                        <legend>Información de pago</legend>
+                        <div class="mb-3">
+                            <label for="cardNumber" class="form-label">Número de tarjeta</label>
+                            <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cardHolder" class="form-label">Nombre del titular</label>
+                            <input type="text" class="form-control" id="cardHolder" name="cardHolder" placeholder="Nombre Apellido" required>   
+                        </div>
+                        <div class="mb-3">
+                            <label for="expiryDate" class="form-label">Fecha de expiración</label>
+                            <input type="month" class="form-control" id="expiryDate" name="expiryDate" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cvv" class="form-label">CVV</label>
+                            <input type="password" class="form-control" id="cvv" name="cvv" placeholder="123" required> 
+                        </div>
+                    <!-- Mostrar el monto total a pagar en el modal?? -->
+                        <button type="submit" class="btn btn-success">Pagar</button>
+                    </form> 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer container d-flex flex-column align-items-center justify-content-center">
+        <p class="footer__text">© 2023 AutoFix. Todos los derechos reservados.</p>
+        <div class="footer__social d-flex gap-3">
+            <a href="#" class="footer__link text-white" target="_blank"><i class="fa-brands fa-facebook fs-5"></i></a>
+            <a href="#" class="footer__link text-white" target="_blank"><i class="fa-brands fa-twitter fs-5"></i></a>
+            <a href="#" class="footer__link text-white" target="_blank"><i class="fa-brands fa-instagram fs-5"></i></a>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK" crossorigin="anonymous"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
